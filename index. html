@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Presidency University Hostel Food Menu</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+    /* Background gradient animation */
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, #667eea, #764ba2, #6a11cb, #2575fc);
+      background-size: 400% 400%;
+      animation: gradientBG 20s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem;
+      color: #ffffffcc;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .app {
+      backdrop-filter: blur(25px);
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.19);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      max-width: 520px;
+      width: 100%;
+      padding: 2.5rem 3rem;
+      box-sizing: border-box;
+      box-shadow:
+        0 4px 30px rgba(0, 0, 0, 0.1);
+      user-select: none;
+    }
+    h1 {
+      font-weight: 600;
+      font-size: 2.8rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+      text-align: center;
+      color: #f7f7f7;
+      position: relative;
+    }
+    h1::after {
+      content: "";
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #ffafbd, #ffc3a0);
+      display: block;
+      margin: 0.5rem auto 0;
+      border-radius: 2px;
+      box-shadow: 0 0 8px #ffafbd;
+    }
+
+    .day-selector {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .day-button {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffeeffdd;
+      border: none;
+      border-radius: 30px;
+      padding: 0.75rem 1.6rem;
+      font-weight: 600;
+      font-size: 1.05rem;
+      cursor: pointer;
+      box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
+      transition:
+        background-color 0.35s ease,
+        box-shadow 0.3s ease,
+        transform 0.25s ease,
+        color 0.35s ease;
+      user-select: none;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15));
+      text-shadow: 0 0 3px rgba(255, 255, 255, 0.18);
+    }
+    .day-button:hover {
+      background: #ffafbd;
+      color: #1b0e1e;
+      box-shadow: 0 0 12px #ffafbd;
+      transform: scale(1.06);
+    }
+    .day-button.focus-visible,
+    .day-button:focus-visible {
+      outline: 3px solid #ffafbd;
+      outline-offset: 2px;
+    }
+    .day-button.active {
+      background: #ffc3a0;
+      color: #3a0e00;
+      box-shadow: 0 0 16px #ffc3a0;
+      transform: scale(1.1);
+      font-weight: 700;
+      text-shadow: none;
+    }
+
+    .meal-section {
+      margin-bottom: 2rem;
+      animation: fadeInContent 0.5s ease forwards;
+    }
+    @keyframes fadeInContent {
+      from {
+        opacity: 0;
+        transform: translateY(6%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .meal-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #fffbe8c9;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease;
+      padding-bottom: 0.3rem;
+    }
+    .meal-section:hover .meal-title {
+      border-color: #ffafbd;
+    }
+    ul.menu-list {
+      list-style-image: url('data:image/svg+xml;utf8,<svg fill="%23ffc3a0" height="12" viewBox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12"/></svg>');
+      padding-left: 1.5rem;
+      margin-top: 0;
+      color: #f6e8e8dd;
+      font-weight: 500;
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+    ul.menu-list li {
+      margin-bottom: 0.5rem;
+      transition: color 0.3s ease;
+      cursor: default;
+      user-select: none;
+    }
+    ul.menu-list li:hover {
+      color: #ffafbd;
+      transform: translateX(4px);
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    @media (max-width: 480px) {
+      .app {
+        padding: 2rem 1.5rem;
+      }
+      h1 {
+        font-size: 2rem;
+        letter-spacing: 0.1em;
+      }
+      .day-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+      }
+      .meal-title {
+        font-size: 1.3rem;
+      }
+      ul.menu-list {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app" role="main" aria-label="Food menu application">
+    <h1>Hostel Food Menu</h1>
+    <nav class="day-selector" aria-label="Select day for menu" id="day-selector">
+      <!-- Buttons injected by JS -->
+    </nav>
+    <section id="menu-display" aria-live="polite" aria-atomic="true">
+      <!-- Menu content injected by JS -->
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const menuData = {
+        Monday: {
+          Breakfast: ['Porridge with honey', 'Boiled eggs', 'Fresh fruit'],
+          Lunch: ['Vegetable biryani', 'Curd', 'Salad'],
+          Dinner: ['Paneer butter masala', 'Chapati', 'Rice']
+        },
+        Tuesday: {
+          Breakfast: ['Poha', 'Tea', 'Banana'],
+          Lunch: ['Dal tadka', 'Jeera rice', 'Mix vegetable curry'],
+          Dinner: ['Chicken curry', 'Chapati', 'Raita']
+        },
+        Wednesday: {
+          Breakfast: ['Idli with sambar', 'Coconut chutney', 'Filter coffee'],
+          Lunch: ['Chole masala', 'Bhature', 'Onion salad'],
+          Dinner: ['Fish fry', 'Rice', 'Lentil soup']
+        },
+        Thursday: {
+          Breakfast: ['Bread and butter', 'Jam', 'Milk'],
+          Lunch: ['Rajma chawal', 'Salad', 'Papad'],
+          Dinner: ['Vegetable pasta', 'Garlic bread']
+        },
+        Friday: {
+          Breakfast: ['Upma', 'Tea', 'Orange slices'],
+          Lunch: ['Mutton curry', 'Rice', 'Mix vegetable salad'],
+          Dinner: ['Egg curry', 'Chapati', 'Boondi raita']
+        },
+        Saturday: {
+          Breakfast: ['Butter toast', 'Scrambled eggs', 'Fruit juice'],
+          Lunch: ['Vegetable pulao', 'Cucumber raita', 'Pickle'],
+          Dinner: ['Grilled chicken', 'Salad', 'Naan']
+        },
+        Sunday: {
+          Breakfast: ['Pancakes with syrup', 'Fresh fruit', 'Coffee'],
+          Lunch: ['Biryani', 'Mixed raita', 'Salad'],
+          Dinner: ['Dal makhani', 'Chapati', 'Vegetable salad']
+        }
+      };
+
+      const days = Object.keys(menuData);
+
+      const daySelector = document.getElementById('day-selector');
+      const menuDisplay = document.getElementById('menu-display');
+
+      let selectedDay = days[0];
+
+      function createDayButtons() {
+        days.forEach(day => {
+          const button = document.createElement('button');
+          button.textContent = day;
+          button.classList.add('day-button');
+          button.setAttribute('type', 'button');
+          button.setAttribute('aria-pressed', 'false');
+
+          if (day === selectedDay) {
+            button.classList.add('active');
+            button.setAttribute('aria-pressed', 'true');
+          }
+
+          button.addEventListener('click', () => {
+            if (selectedDay === day) return;
+            
+            selectedDay = day;
+            updateDayButtons();
+            displayMenuForDay(selectedDay);
+          });
+
+          daySelector.appendChild(button);
+        });
+      }
+
+      function updateDayButtons() {
+        const buttons = daySelector.querySelectorAll('.day-button');
+        buttons.forEach(button => {
+          if (button.textContent === selectedDay) {
+            button.classList.add('active');
+            button.setAttribute('aria-pressed', 'true');
+          } else {
+            button.classList.remove('active');
+            button.setAttribute('aria-pressed', 'false');
+          }
+        });
+      }
+
+      function displayMenuForDay(day) {
+        const menu = menuData[day];
+
+        menuDisplay.innerHTML = `
+          <div class="meal-section">
+            <h2 class="meal-title">Breakfast</h2>
+            <ul class="menu-list">
+              ${menu.Breakfast.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="meal-section">
+            <h2 class="meal-title">Lunch</h2>
+            <ul class="menu-list">
+              ${menu.Lunch.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="meal-section">
+            <h2 class="meal-title">Dinner</h2>
+            <ul class="menu-list">
+              ${menu.Dinner.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }
+
+      // Initialization
+      createDayButtons();
+      displayMenuForDay(selectedDay);
+    })();
+  </script>
+</body>
+</html>
